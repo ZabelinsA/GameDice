@@ -14,27 +14,26 @@ while not gameover and balans > 0:
         else:
             print('Неверный формат ввода данных. Вводите только числа!')
     while True:
-        stavka = int(input('Введите сумму ставки: '))
-        if stavka <= balans:
-            break
-        print('Недостаточно баланса для такой ставки!')
-while True:
-    stavka = int(input('Введите сумму ставки: '))
-    if stavka <= balans:
-        break
-    print('Недостаточно баланса для такой ставки!')
-balans -= stavka
-num1 = randint(1, 6)
-num2 = randint(1, 6)
-summa = num1 + num2
-print('Выпали числа {} и {}. Сумма = {}'.format(num1, num2, summa))
-if summa == option:
-    print('Везунчик! Вы выиграли в четыре раза больше очков, чем сделанная ставка!')
-    balans += stavka * 5  # возвращаем ставку (balans -= stavka) + выигрыш (stavka*4)
-elif (summa < 7 and option < 7) or (summa > 7 and option > 7):
-    print('Отлично! Вы выиграли свою ставку!')
-    balans += stavka * 2  # возвращаем ставку (balans -= stavka) + выигрыш (stavka)
-else:
-    print('К сожалению, Вы проиграли ставку!')
-gameover = bool(input('Если хотите выйти, введите любой символ. Если хотите продолжить - нажмите Enter: '))
-print('Конец игры. У Вас закончились баллы или Вы захотели выйти из игры.')
+        stavka1 = input('Введите сумму ставки: ')
+        if str.isnumeric(stavka1):  # проверка на ввод числа
+            stavka = int(stavka1)
+            if stavka <= balans:
+                break  # выход из цикла while True для ставки
+            print('Недостаточно баланса для такой ставки!')
+        else:
+            print('Неверный формат ввода данных. Вводите только числа!')
+    balans -= stavka
+    num1 = randint(1, 6)
+    num2 = randint(1, 6)
+    summa = num1 + num2
+    print('Выпали числа {} и {}. Сумма = {}'.format(num1, num2, summa))
+    if summa == option:
+        print('Везунчик! Вы выиграли в четыре раза больше очков, чем сделанная ставка!')
+        balans += stavka * 5  # возвращаем ставку (balans -= stavka) + выигрыш (stavka*4)
+    elif (summa < 7 and option < 7) or (summa > 7 and option > 7):
+        print('Отлично! Вы выиграли свою ставку!')
+        balans += stavka * 2  # возвращаем ставку (balans -= stavka) + выигрыш (stavka)
+    else:
+        print('К сожалению, Вы проиграли ставку!')
+    gameover = bool(input('Если хотите выйти, введите любой символ. Если хотите продолжить - нажмите Enter: '))
+print('Игра окончена. У Вас закончились баллы или Вы захотели выйти из игры.')
